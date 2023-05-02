@@ -1,23 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField, Button, Box } from "@mui/material";
+import { validarEmail, validarPassword } from "./validaciones";
 
-class DatosUsuario extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: {
-        value: '',
-        valid: true
-      },
-      password: {
-        value: '',
-        valid: true
-      }
-    }
-  }
+const DatosUsuario = () => {
+  const [email, setEmail] = useState({ value: 'nombre', valid: true });
+  const [password, setPassword] = useState({ value: 'abc', valid: true});
 
-  render() {
+
     return (
       <Box
         component="form"
@@ -30,7 +20,7 @@ class DatosUsuario extends React.Component {
         }}
         onSubmit={ (e) => {
           e.preventDefault()
-          console.log(this.state)
+          console.log({email, password})
         }}
       >
         <TextField
@@ -39,10 +29,15 @@ class DatosUsuario extends React.Component {
           fullWidth
           margin="dense"
           type="email"
-          error={false}
+          error={ false }
           helperText={false && "Ingresa un correo electrónico válido"}
-          value={ this.state.email.value }
-          onChange={ (input) => this.setState({email: {value: input.target.value}})}
+          value={ email.value }
+          onChange={ (input) => {
+            const email = input.target.value
+            const valido = validarEmail(email)
+            setEmail({ value: email, valid: valido})
+            }
+          }
         />
         <TextField
           label="Contraseña"
@@ -50,15 +45,20 @@ class DatosUsuario extends React.Component {
           fullWidth
           margin="dense"
           type="password"
-          value={ this.state.password.value}
-          onChange={ (input) => this.setState({ password: { value: input.target.value } } ) }
+          value={ password.value }
+          onChange={ (input) => { 
+            const password = input.target.value
+            
+            setPassword({ value: password, valid: validarPassword(password) })
+            }
+          }
         />
         <Button variant="contained" type="submit">
           Siguiente
         </Button>
       </Box>
     );
-  }
+  
 }
 
 export default DatosUsuario;
