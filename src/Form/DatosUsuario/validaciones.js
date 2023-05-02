@@ -12,7 +12,6 @@ export const validarEmail = (email) => {
 }
 
 export function validarPassword(password) {
-  console.log(password)
   const length = password.length
 
   if (length > 6 && length < 20) {

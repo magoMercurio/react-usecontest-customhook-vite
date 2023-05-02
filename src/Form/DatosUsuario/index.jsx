@@ -4,8 +4,8 @@ import { validarEmail, validarPassword } from "./validaciones";
 
 
 const DatosUsuario = () => {
-  const [email, setEmail] = useState({ value: 'nombre', valid: true });
-  const [password, setPassword] = useState({ value: 'abc', valid: true});
+  const [email, setEmail] = useState({ value: '', valid: null });
+  const [password, setPassword] = useState({ value: '', valid: null});
 
 
     return (
@@ -20,7 +20,12 @@ const DatosUsuario = () => {
         }}
         onSubmit={ (e) => {
           e.preventDefault()
-          console.log({email, password})
+          if (email.valid && password.valid) {
+            console.log('siguiente formulario')
+          } else {
+            console.log('no hacer nada')
+          }
+
         }}
       >
         <TextField
@@ -28,14 +33,15 @@ const DatosUsuario = () => {
           variant="outlined"
           fullWidth
           margin="dense"
+          //onBlur={() => validarEmail(email)}
           type="email"
-          error={ false }
-          helperText={false && "Ingresa un correo electrónico válido"}
+          error={ email.valid === false}
+          helperText={email.valid === false && "Ingresa un correo electrónico válido"}
           value={ email.value }
           onChange={ (input) => {
             const email = input.target.value
-            const valido = validarEmail(email)
-            setEmail({ value: email, valid: valido})
+            /* const valido = validarEmail(email) */
+            setEmail({ value: email, valid: validarEmail(email)})
             }
           }
         />
@@ -45,10 +51,12 @@ const DatosUsuario = () => {
           fullWidth
           margin="dense"
           type="password"
+          error={ password.valid === false }
+          helperText={ password.valid === false && 'Ingresa una contrasena valida, al menos 8 caracteres y maximo 20.'}
           value={ password.value }
           onChange={ (input) => { 
             const password = input.target.value
-            
+
             setPassword({ value: password, valid: validarPassword(password) })
             }
           }
