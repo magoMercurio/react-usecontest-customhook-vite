@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { LogoSpace, MainSpace, FormSpace, Img } from "./styles";
@@ -10,10 +11,15 @@ import Stepper from "../Stepper";
 const Form = () => {
   const [step, setStep] = useState(0)
 
+  const updateStep = (step) => {
+    console.log('actualizar paso', step)
+    setStep(step)
+  }
+
     const steps = {
-    0: <DatosUsuario />,
-    1: <DatosPersonales />,
-    2: <DatosEntrega />, 
+    0: <DatosUsuario updateStep={updateStep} />,
+    1: <DatosPersonales updateStep={updateStep} />,
+    2: <DatosEntrega updateStep={updateStep} />, 
     3: <Complete />
   }
   

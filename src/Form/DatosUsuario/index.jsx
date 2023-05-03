@@ -3,7 +3,7 @@ import { TextField, Button, Box } from "@mui/material";
 import { validarEmail, validarPassword } from "./validaciones";
 
 
-const DatosUsuario = () => {
+const DatosUsuario = ({ updateStep }) => {
   const [email, setEmail] = useState({ value: '', valid: null });
   const [password, setPassword] = useState({ value: '', valid: null});
 
@@ -22,6 +22,8 @@ const DatosUsuario = () => {
           e.preventDefault()
           if (email.valid && password.valid) {
             console.log('siguiente formulario')
+            console.log(email, password)
+            updateStep(1)
           } else {
             console.log('no hacer nada')
           }
