@@ -1,7 +1,7 @@
 import React from "react";
 import { TextField, Button, Box } from "@mui/material";
 
-const DatosPersonales = () => {
+const DatosPersonales = ({updateStep}) => {
   return (
     <Box
       component="form"
@@ -12,6 +12,12 @@ const DatosPersonales = () => {
         justifyContent: "center",
         flexDirection: "column",
       }}
+
+      onSubmit={(e) => {
+        e.preventDefault()
+        updateStep(2)
+      }}
+
     >
       <TextField
         label="Nombre"
