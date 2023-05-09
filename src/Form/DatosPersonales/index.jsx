@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react"
 import { TextField, Button, Box } from "@mui/material"
 import { validarNombre, validarApellidos, validarTelefono } from "./validaciones"
@@ -64,7 +65,7 @@ const DatosPersonales = ({updateStep}) => {
         onChange={ (input) => {
           const value = input.target.value
           const valid = validarTelefono(value)
-          setLastName({ value, valid})
+          setPhone({ value, valid})
         }}
       />
       <Button variant="contained" type="submit">
