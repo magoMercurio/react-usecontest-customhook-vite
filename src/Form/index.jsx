@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { LogoSpace, FormSpace, Img } from "./styles";
 import DatosUsuario from "./DatosUsuario";
@@ -14,6 +14,28 @@ import { validarEmail, validarPassword } from "./DatosUsuario/validaciones";
 
 const Form = () => {
   const [step, setStep] = useState(0)
+  const [pasos, setPasos] = useState({})
+
+  useEffect(() => {
+    console.log('useEfect')
+  } )
+
+  useEffect( () => {
+    console.log('SE HA ACTUALIZADO EL STEP:', step)  
+  }, [step])
+  
+/*   useEffect( () => { 
+    async function getdata(){
+    try {
+      const data = await fetch('https://jsonplaceholder.typicode.com/posts')
+      const posts = await data.json()
+      console.log(posts)
+    }catch(e){
+      console.log(e)
+    }
+  }
+  getdata()
+  }, []) */
 
   const updateStep = (step) => {
     console.log('actualizar paso', step)
@@ -27,7 +49,12 @@ const Form = () => {
     3: <Complete />
   }
 
-  const onSubmit = () => {}
+  const onSubmit = () => {
+    /* let newStep = step + 1
+    setStep(newStep)
+    console.log('newStep:', newStep)
+    console.log(step) */
+  }
 
   const handleChange = (element, position, currentStep, validator) => {
     const value = element.target.value
@@ -89,4 +116,3 @@ const Form = () => {
 };
 
 export default Form;
-``
