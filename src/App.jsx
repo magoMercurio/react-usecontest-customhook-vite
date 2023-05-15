@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { MainSpace, ImageSpace, FormSpace } from "./styles";
 import { Button } from "@mui/material";
 import Form from "./Form";
