@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { Box, Stepper, Step, StepLabel } from "@mui/material";
 
@@ -7,7 +6,6 @@ const StepperComponent = (props) => {
 
   return (
     <Box sx={{ width: "100%" }}>
-    
       <Stepper activeStep={props.step}>
         {steps.map((step) => (
           <Step key={step}>

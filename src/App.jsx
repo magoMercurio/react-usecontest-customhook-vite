@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { MainSpace, ImageSpace, FormSpace } from "./styles";
-import { Button} from "@mui/material";
+import { Button } from "@mui/material";
 import Form from "./Form";
 import { CounterContext } from "./Context.jsx";
 
