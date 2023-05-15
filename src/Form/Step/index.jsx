@@ -1,8 +1,14 @@
-import react, { useState } from "react";
+import react, { useState, useContext } from "react";
 import { TextField, Button, Box } from "@mui/material";
-const Step = ({ data, step }) => {
+import { CounterContext } from "../../Context.jsx";
+
+
+
+const Step = ({ data, step, pasos }) => {
 
   const { inputs, buttonText, onSubmit } = data
+
+  const counterData = useContext(CounterContext);
 
     return (
       <Box
@@ -14,8 +20,12 @@ const Step = ({ data, step }) => {
           justifyContent: "center",
           flexDirection: "column",
         }}
-        onSubmit={onSubmit}
+        onSubmit={ (e) => onSubmit(e, step, pasos) }
       >
+
+<strong> El valor del contador es: { counterData.count} </strong>
+
+
         {inputs.map( ( input, i ) => {
           const { label, type, value, valid, onChange, helperText, validator } = input;
           return (
